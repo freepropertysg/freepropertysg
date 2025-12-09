@@ -4,9 +4,10 @@ Last updated: <span id="lastUpdated"></span>
 
 <script>
 document.getElementById("year").textContent = new Date().getFullYear();
-document.getElementById("lastUpdated").textContent = new Date().toLocaleDateString("en-SG", {
-  year: "numeric",
-  month: "long",
-  day: "numeric"
-});
+document.getElementById("lastUpdated").textContent =
+  new Date().toLocaleDateString("en-SG", {
+    year: "numeric",
+    month: "long",
+    day: "numeric"
+  });
 </script>
