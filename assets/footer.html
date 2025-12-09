@@ -1,69 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="robots" content="noindex, nofollow">
-  <title>Footer - Engg-Tech.com</title>
-</head>
-<body>
-<!-- 🔻 Engg-Tech Centralized Footer -->
-<style>
-  footer a:hover {
-    text-decoration: underline !important;
-  }
-  .footer-btn {
-    display: inline-block;
-    padding: 0.5rem 1rem;
-    border: 2px solid #ff6a00;
-    color: #ff6a00;
-    text-decoration: none;
-    border-radius: 0 !important;
-    transition: all 0.3s ease;
-  }
-  .footer-btn:hover {
-    background-color: #ff6a00;
-    color: #fff;
-    text-decoration: none !important;
-  }
-</style>
-
-<footer style="background-color:#1e2327; color:#fff; padding-top:3rem; padding-bottom:2rem; padding-left:1.5rem; padding-right:1.5rem; box-sizing:border-box; font-family:sans-serif; font-size:1rem;">
-  <div style="display:flex; flex-wrap:wrap; justify-content:space-between; margin:0 auto; gap:2rem;">
-    <!-- Stay Connected -->
-    <div style="flex:1; min-width: 250px;">
-      <h2 style="font-weight: 800; font-size: 1.5rem; margin-bottom: 0.5rem;">Stay Connected</h2>
-      <p style="margin: 0 0 1rem;">Follow us for company updates, fire safety tips, and the latest projects.</p>
-      <p style="margin: 0;">
-        <a href="https://linkedin.com/company/enggtechofficial" rel="me noopener noreferrer" style="color:#fff; text-decoration:none;" target="_blank">LinkedIn</a> |
-        <a href="https://facebook.com/enggtechofficial" rel="me noopener noreferrer" style="color:#fff; text-decoration:none;" target="_blank">Facebook</a> |
-        <a href="https://instagram.com/enggtechofficial" rel="me noopener noreferrer" style="color:#fff; text-decoration:none;" target="_blank">Instagram</a> |
-        <a href="https://youtube.com/@enggtechofficial" rel="me noopener noreferrer" style="color:#fff; text-decoration:none;" target="_blank">YouTube</a>
-      </p>
-    </div>
-
-    <!-- Explore Blog -->
-    <div style="flex:1; min-width: 250px;">
-      <h2 style="font-weight: 800; font-size: 1.5rem; margin-bottom: 0.5rem;">Explore Our Blog</h2>
-      <p style="margin: 0 0 1rem;">From smart home tips to trending how-to guides, plus expert insights across industries—fresh, useful, and share-worthy content for curious readers everywhere.</p>
-      <p style="margin: 0;">
-        <a href="https://engg-tech.com/blog/" 
-   style="color:#fff; text-decoration:none;" 
-   title="Explore Engg-Tech’s fire protection and M&E services in Singapore">
-   Read Our Latest Articles & Discover More →
-</a>
-      </p>
-    </div>
-
-    <!-- Contact Us -->
-    <div style="flex:1; min-width: 250px;">
-      <h2 style="font-weight: 800; font-size: 1.5rem; margin-bottom: 0.5rem;">Contact Us</h2>
-      <p style="margin: 0 0 0.5rem;">Email Us Today For Trusted Support</p>
-      <p style="margin: 0 0 1rem;"><a href="mailto:info@engg-tech.com" style="color:#fff; text-decoration:none;">info@engg-tech.com</a></p>
-      <a class="footer-btn" href="https://engg-tech.com/contact-us">Request with Online Form</a>
-    </div>
-  </div>
-
-  <hr style="margin-top:4rem; margin-bottom:1.5rem; max-width:1200px; border:0; border-top:1.5px solid #ffffff;">
 <!-- COPYRIGHT START -->
 <div style="text-align:center; font-size:0.9rem;">
   <p style="margin:0.2rem 0;">
@@ -105,7 +39,21 @@
   <small class="disclaimer">Disclaimer: This page contains sponsored ads via Google AdSense.</small>
 </div>
 <!-- COPYRIGHT END -->
-</footer>
-<!-- 🔺 End Centralized Footer -->
- </body>
-</html>
+
+
+
+
+© <span id="year"></span> FreePropertySG — Singapore’s Free Property Portal  
+<br>
+Last updated: <span id="lastUpdated"></span>
+
+<script>
+document.getElementById("year").textContent = new Date().getFullYear();
+document.getElementById("lastUpdated").textContent = new Date().toLocaleDateString("en-SG", {
+  year: "numeric",
+  month: "long",
+  day: "numeric"
+});
+</script>
+
+
