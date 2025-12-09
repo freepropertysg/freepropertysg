@@ -123,6 +123,14 @@ Have questions or want to list your property for free?<br>
 </main>
 
 <!-- FOOTER -->
+<script>
+fetch("/assets/footer.html")
+  .then(res => res.text())
+  .then(html => {
+    document.getElementById("site-footer").innerHTML = html;
+  });
+</script>
+<!-- FOOTER END -->  
 
 <!-- MOBILE MENU -->
 <script>
