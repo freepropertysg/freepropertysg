@@ -99,11 +99,12 @@
 <!-- ACTIVE LINK SCRIPT -->
 <script>
 document.addEventListener("DOMContentLoaded", function () {
+  const current = window.location.pathname.replace(/\/$/, "");
   const links = document.querySelectorAll(".nav-menu a");
-  const current = window.location.pathname;
 
   links.forEach(link => {
-    if (link.getAttribute("href") === current) {
+    const linkPath = link.getAttribute("href").replace(/\/$/, "");
+    if (linkPath === current) {
       link.classList.add("active");
     }
   });
