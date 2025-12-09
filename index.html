@@ -163,7 +163,14 @@ document.addEventListener("DOMContentLoaded", function () {
 </main>
 
 <!-- FOOTER -->
-
+<footer id="site-footer"></footer>
+<script>
+fetch("/assets/footer.html")
+  .then(res => res.text())
+  .then(html => {
+    document.getElementById("site-footer").innerHTML = html;
+  });
+</script>
 
 <!-- MOBILE MENU SCRIPT -->
 <script>
