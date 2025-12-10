@@ -20,20 +20,15 @@
 
 <body>
 
-<!-- NAVIGATION -->
-<nav class="navbar">
-  <div class="nav-container">
-    <a href="/" class="nav-logo">FreePropertySG</a>
-    <span class="menu-toggle">☰</span>
-    <ul class="nav-menu">
-      <li><a href="/">HOME</a></li>
-      <li><a href="/about">ABOUT</a></li>
-      <li><a href="/listings">LISTINGS</a></li>
-      <li><a href="/blog">BLOG</a></li>
-      <li><a href="/contact">CONTACT</a></li>
-    </ul>
-  </div>
-</nav>
+<!-- NAVIGATION (CENTRALISED) -->
+<div id="site-nav"></div>
+<script>
+fetch("/assets/nav.html")
+  .then(x => x.text())
+  .then(html => {
+    document.getElementById("site-nav").innerHTML = html;
+  });
+</script>
 
 <!-- ACTIVE LINK SCRIPT -->
 <script>
