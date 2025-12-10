@@ -27,21 +27,25 @@ fetch("/assets/nav.html")
   .then(x => x.text())
   .then(html => {
     document.getElementById("site-nav").innerHTML = html;
-  });
-</script>
 
-<!-- ACTIVE LINK SCRIPT -->
-<script>
-document.addEventListener("DOMContentLoaded", function () {
-  const links = document.querySelectorAll(".nav-menu a");
-  const current = window.location.pathname;
+    /* ACTIVE LINK SCRIPT */
+    const links = document.querySelectorAll(".nav-menu a");
+    const current = window.location.pathname;
+    links.forEach(link => {
+      if (link.getAttribute("href") === current) {
+        link.classList.add("active");
+      }
+    });
 
-  links.forEach(link => {
-    if (link.getAttribute("href") === current) {
-      link.classList.add("active");
+    /* MOBILE MENU SCRIPT */
+    const toggle = document.querySelector(".menu-toggle");
+    const menu = document.querySelector(".nav-menu");
+    if (toggle) {
+      toggle.addEventListener("click", () => {
+        menu.classList.toggle("show");
+      });
     }
   });
-});
 </script>
 
 <!-- MAIN LANDMARK -->
@@ -105,18 +109,6 @@ fetch("/assets/footer.html")
   .then(html => {
     document.getElementById("site-footer").innerHTML = html;
   });
-</script>
-
-<!-- MOBILE MENU SCRIPT -->
-<script>
-document.addEventListener("DOMContentLoaded", function () {
-  const toggle = document.querySelector(".menu-toggle");
-  const menu = document.querySelector(".nav-menu");
-
-  toggle.addEventListener("click", () => {
-    menu.classList.toggle("show");
-  });
-});
 </script>
 
 </body>
