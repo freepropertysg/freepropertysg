@@ -7,35 +7,47 @@ document.addEventListener("DOMContentLoaded", () => {
   </p>
   
   <p style="margin:0.2rem 0;">
+    <!-- Last updated start -->
     <em id="lastUpdated"></em>
+
+    <script data-exec>
+    (function() {
+      const now = new Date();
+      const year = now.getFullYear();
+
+      // auto year updates
+      const copyEl = document.getElementById("copyYear");
+      const siteEl = document.getElementById("siteYear");
+      if (copyEl) copyEl.textContent = year;
+      if (siteEl) siteEl.textContent = year;
+
+      // Full date format: Day Month Year
+      const day = now.getDate();
+      const months = [
+        "January","February","March","April","May","June","July",
+        "August","September","October","November","December"
+      ];
+      const formattedDate = \`\${day} \${months[now.getMonth()]} \${year}\`;
+      
+      const updatedEl = document.getElementById("lastUpdated");
+      if (updatedEl) updatedEl.textContent = \`Last updated: \${formattedDate}\`;
+    })();
+    </script>
+
+    <!-- force run when footer.html is loaded dynamically -->
+    <img alt="" style="display:none"
+      src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw=="
+      onload="document.querySelectorAll('script[data-exec]:not([data-ran])').forEach(s=>{
+        let n=document.createElement('script');
+        n.text=s.textContent;
+        document.body.appendChild(n);
+        s.dataset.ran=1;
+      });">
+    <!-- Last updated end -->
   </p>
 </div>
   `;
 
-  // Insert footer into page
+  // Insert EXACT HTML from footer.html
   document.getElementById("site-footer").innerHTML = footerHTML;
-
-  // ----- AUTO YEAR + LAST UPDATED LOGIC (exact same as footer.html) -----
-  (function() {
-    const now = new Date();
-    const year = now.getFullYear();
-
-    // auto year updates
-    const copyEl = document.getElementById("copyYear");
-    const siteEl = document.getElementById("siteYear");
-    if (copyEl) copyEl.textContent = year;
-    if (siteEl) siteEl.textContent = year;
-
-    // Full date format: Day Month Year
-    const day = now.getDate();
-    const months = [
-      "January","February","March","April","May","June","July",
-      "August","September","October","November","December"
-    ];
-    const formattedDate = `${day} ${months[now.getMonth()]} ${year}`;
-    
-    const updatedEl = document.getElementById("lastUpdated");
-    if (updatedEl) updatedEl.textContent = `Last updated: ${formattedDate}`;
-  })();
-
 });
