@@ -10,4 +10,19 @@
       <li><a href="/contact">CONTACT</a></li>
     </ul>
   </div>
+
 </nav>
+
+<!-- ACTIVE LINK SCRIPT -->
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const links = document.querySelectorAll(".nav-menu a");
+  const current = window.location.pathname;
+
+  links.forEach(link => {
+    if (link.getAttribute("href") === current) {
+      link.classList.add("active");
+    }
+  });
+});
+</script>
