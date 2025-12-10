@@ -111,14 +111,8 @@
 </main>
 
 <!-- FOOTER -->
-<footer id="site-footer"></footer>
-<script>
-fetch("/assets/footer.html")
-  .then(res => res.text())
-  .then(html => {
-    document.getElementById("site-footer").innerHTML = html;
-  });
-</script>
+<div id="site-footer"></div>
+<script src="/assets/footer.js"></script>
 
 </body>
 </html>
