@@ -20,34 +20,32 @@
 
 <body>
 
-<!-- NAVIGATION -->
-<nav class="navbar">
-  <div class="nav-container">
-    <a href="/" class="nav-logo">FreePropertySG</a>
-    <span class="menu-toggle">☰</span>
-    <ul class="nav-menu">
-      <li><a href="/">HOME</a></li>
-      <li><a href="/about">ABOUT</a></li>
-      <li><a href="/listings">LISTINGS</a></li>
-      <li><a href="/blog">BLOG</a></li>
-      <li><a href="/contact">CONTACT</a></li>
-    </ul>
-  </div>
-</nav>
-
-<!-- ACTIVE LINK HIGHLIGHT (FIXED FOR TRAILING SLASH) -->
+<!-- NAVIGATION (CENTRALISED) -->
+<div id="site-nav"></div>
 <script>
-document.addEventListener("DOMContentLoaded", function () {
-  const current = window.location.pathname.replace(/\/$/, "");
-  const links = document.querySelectorAll(".nav-menu a");
+fetch("/assets/nav.html")
+  .then(x => x.text())
+  .then(html => {
+    document.getElementById("site-nav").innerHTML = html;
 
-  links.forEach(link => {
-    const linkPath = link.getAttribute("href").replace(/\/$/, "");
-    if (linkPath === current) {
-      link.classList.add("active");
+    /* ACTIVE LINK SCRIPT */
+    const links = document.querySelectorAll(".nav-menu a");
+    const current = window.location.pathname;
+    links.forEach(link => {
+      if (link.getAttribute("href") === current) {
+        link.classList.add("active");
+      }
+    });
+
+    /* MOBILE MENU SCRIPT */
+    const toggle = document.querySelector(".menu-toggle");
+    const menu = document.querySelector(".nav-menu");
+    if (toggle) {
+      toggle.addEventListener("click", () => {
+        menu.classList.toggle("show");
+      });
     }
   });
-});
 </script>
 
 <!-- MAIN -->
@@ -101,17 +99,6 @@ fetch("/assets/footer.html")
     document.getElementById("site-footer").innerHTML = html;
   });
 </script>  
-
-<!-- MOBILE MENU -->
-<script>
-document.addEventListener("DOMContentLoaded", function () {
-  const toggle = document.querySelector(".menu-toggle");
-  const menu = document.querySelector(".nav-menu");
-  toggle.addEventListener("click", () => {
-    menu.classList.toggle("show");
-  });
-});
-</script>
 
 </body>
 </html>
