@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
     .recommended-posts-section {
       margin-top: 2rem;
       margin-bottom: 2rem;
-      padding: 0 !important; /* FIX: remove left/right padding */
+      padding: 0 !important;
     }
     .recommended-posts-section h2 {
       font-size: 1.6rem;
@@ -27,7 +27,6 @@ document.addEventListener("DOMContentLoaded", () => {
     .reco-post-link {
       text-decoration: none;
       color: #000;
-      font-weight: normal;
       padding: 0.2rem 0;
       display: block;
       transition: color 0.2s ease;
@@ -59,8 +58,7 @@ document.addEventListener("DOMContentLoaded", () => {
   if (placeholder) {
     placeholder.insertAdjacentHTML("beforeend", recommendedHTML);
   } else {
-    // fallback: insert before footer
-    const footer = document.querySelector("#enggtech-footer");
+    const footer = document.querySelector("#site-footer");
     if (footer) {
       footer.insertAdjacentHTML("beforebegin", recommendedHTML);
     } else {
@@ -73,14 +71,15 @@ document.addEventListener("DOMContentLoaded", () => {
   ---------------------------------------- */
   (async function () {
     try {
-      const res = await fetch("https://engg-tech.com/blog/");
+      // FIXED — fetch from the correct domain
+      const res = await fetch("https://freepropertysg.com/blog/");
       const html = await res.text();
       const doc = new DOMParser().parseFromString(html, "text/html");
 
       // Extract blog links
       const posts = [...doc.querySelectorAll("a[href^='/blog/']")].map(a => ({
         title: a.textContent.trim(),
-        url: a.href.replace(/\/$/, "")
+        url: ("https://freepropertysg.com" + a.getAttribute("href")).replace(/\/$/, "")
       }));
 
       const currentURL = window.location.href.replace(/\/$/, "");
@@ -90,7 +89,7 @@ document.addEventListener("DOMContentLoaded", () => {
         .filter(p => p.url !== currentURL)
         .filter((v, i, self) => i === self.findIndex(t => t.url === v.url));
 
-      // Pick 3 random
+      // Select 3 random recommended posts
       const selected = unique.sort(() => Math.random() - 0.5).slice(0, 3);
 
       const box = document.getElementById("recommendedContainer");
