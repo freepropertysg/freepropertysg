@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const heroContainer = document.getElementById("hro");
+  const heroContainer = document.getElementById("hero"); // <-- FIXED
   if (!heroContainer) return;
 
   heroContainer.innerHTML = `
