@@ -40,9 +40,8 @@
 
 <!-- CATEGORY: Property Blog & Insights -->
 <section class="blog-section">
-  <h3>🏘️ Property Blog & Insights</h3>
+  <h3>🏘️ <span class="section-number"></span> Property Blog & Insights</h3>
   <ul class="blog-list">
-    <!-- HDB -->
     <li><a href="/blog/parc-clematis">Parc Clematis</a></li>
     <li><a href="/blog/high-park-residences">High Park Residences</a></li>
     <li><a href="/blog/the-trilinq">The Trilinq</a></li>
@@ -51,7 +50,7 @@
 
 <!-- CATEGORY: INVESTMENT -->
 <section class="blog-section">
-  <h3>📈 Property Investment</h3>
+  <h3>📈 <span class="section-number"></span> Property Investment</h3>
   <ul class="blog-list">
     <li><a href="/blog/rental-yield-calculator-singapore">Rental Yield Calculator Singapore</a></li>
     <li><a href="/blog/absd-singapore">ABSD Singapore</a></li>
@@ -61,7 +60,7 @@
 
 <!-- CATEGORY: RENOVATION -->
 <section class="blog-section">
-  <h3>🧱 Renovation</h3>
+  <h3>🧱 <span class="section-number"></span> Renovation</h3>
   <ul class="blog-list">
     <li><a href="/blog/toilet-renovation-package">Toilet Renovation Package</a></li>
     <li><a href="/blog/kitchen-renovation-package-price">Kitchen Renovation Package Price</a></li>
@@ -70,7 +69,7 @@
 
 <!-- CATEGORY: TIPS -->
 <section class="blog-section">
-  <h3>💡 Property Tips</h3>
+  <h3>💡 <span class="section-number"></span> Property Tips</h3>
   <ul class="blog-list">
     <li><a href="/blog/property-agent-commission">Property Agent Commission</a></li>
     <li><a href="/blog/srx-x-value">SRX X-Value</a></li>
@@ -88,6 +87,33 @@
 <!-- FOOTER -->
 <div id="site-footer"></div>
 <script src="/assets/footer.js"></script>
+
+<!-- AUTO NUMBERING SCRIPT -->
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const sections = document.querySelectorAll(".blog-section");
+
+  sections.forEach((section, sectionIndex) => {
+    const sectionNumber = sectionIndex + 1;
+
+    // Insert section number
+    const span = section.querySelector(".section-number");
+    if (span) span.textContent = sectionNumber + ". ";
+
+    // Auto-number posts inside each section
+    const posts = section.querySelectorAll("ul.blog-list li a");
+
+    posts.forEach((post, postIndex) => {
+      const postNumber = `${sectionNumber}.${postIndex + 1} `;
+
+      // Prevent double numbering if script runs again
+      if (!post.textContent.match(/^\d+\.\d+/)) {
+        post.textContent = postNumber + post.textContent;
+      }
+    });
+  });
+});
+</script>
 
 </body>
 </html>
