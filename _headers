@@ -1,4 +1,9 @@
-/assets/footer.html
+/assets/header.js
+  X-Robots-Tag: noindex, nofollow
+  Access-Control-Allow-Origin: https://freepropertysg.com
+  Referrer-Policy: same-origin
+
+/assets/footer.js
   X-Robots-Tag: noindex, nofollow
   Access-Control-Allow-Origin: https://freepropertysg.com
   Referrer-Policy: same-origin
