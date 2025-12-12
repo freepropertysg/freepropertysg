@@ -1,4 +1,4 @@
-name: Auto Generate Sitemap & Blog Index
+name: Auto Sitemap + Blog Index
 
 on:
   push:
