@@ -3,12 +3,7 @@ const fs = require("fs");
 const SITE_URL = "https://freepropertysg.com";
 const BLOG_DIR = "./blog";
 
-let urls = [
-  "/",
-  "/about.html",
-  "/blog/",
-  "/contact.html"
-];
+let urls = ["/blog/"];
 
 fs.readdirSync(BLOG_DIR).forEach(file => {
   if (file.endsWith(".html") && file !== "index.html") {
