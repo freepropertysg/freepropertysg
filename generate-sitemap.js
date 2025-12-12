@@ -18,12 +18,16 @@ function urlBlock(loc, priority, changefreq) {
 
 let urls = [];
 
-// Blog index
+// === STATIC PAGES (ADDED) ===
 urls.push(
-  urlBlock(`${SITE_URL}/blog/`, "0.7", "weekly")
+  urlBlock(`${SITE_URL}/`, "1.0", "weekly"),
+  urlBlock(`${SITE_URL}/about/`, "0.8", "monthly"),
+  urlBlock(`${SITE_URL}/listings/`, "0.9", "daily"),
+  urlBlock(`${SITE_URL}/blog/`, "0.7", "weekly"),
+  urlBlock(`${SITE_URL}/contact/`, "0.6", "monthly")
 );
 
-// Blog posts
+// === BLOG POSTS (UNCHANGED) ===
 fs.readdirSync(BLOG_DIR).forEach(file => {
   if (file.endsWith(".html") && file !== "index.html") {
     const slug = file.replace(".html", "");
