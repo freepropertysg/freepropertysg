@@ -3,20 +3,39 @@ const fs = require("fs");
 const SITE_URL = "https://freepropertysg.com";
 const BLOG_DIR = "./blog";
 
-let urls = ["/blog/"];
+// today as YYYY-MM-DD
+const today = new Date().toISOString().split("T")[0];
 
+function urlBlock(loc, priority, changefreq) {
+  return `
+  <url>
+    <loc>${loc}</loc>
+    <lastmod>${today}</lastmod>
+    <changefreq>${changefreq}</changefreq>
+    <priority>${priority}</priority>
+  </url>`;
+}
+
+let urls = [];
+
+// Blog index
+urls.push(
+  urlBlock(`${SITE_URL}/blog/`, "0.7", "weekly")
+);
+
+// Blog posts
 fs.readdirSync(BLOG_DIR).forEach(file => {
   if (file.endsWith(".html") && file !== "index.html") {
-    urls.push(`/blog/${file.replace(".html", "")}`);
+    const slug = file.replace(".html", "");
+    urls.push(
+      urlBlock(`${SITE_URL}/blog/${slug}`, "0.6", "monthly")
+    );
   }
 });
 
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${urls.map(u => `
-  <url>
-    <loc>${SITE_URL}${u}</loc>
-  </url>`).join("")}
+${urls.join("")}
 </urlset>`;
 
 fs.writeFileSync("sitemap.xml", sitemap);
