@@ -2,38 +2,39 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
   <url>
-    <loc>https://freepropertysg.com/</loc>
-    <lastmod>2025-11-29</lastmod>
-    <priority>1.0</priority>
-    <changefreq>weekly</changefreq>
-  </url>
-
-  <url>
-    <loc>https://freepropertysg.com/about/</loc>
-    <lastmod>2025-11-29</lastmod>
-    <priority>0.8</priority>
-    <changefreq>monthly</changefreq>
-  </url>
-
-  <url>
-    <loc>https://freepropertysg.com/listings/</loc>
-    <lastmod>2025-11-29</lastmod>
-    <priority>0.9</priority>
-    <changefreq>daily</changefreq>
-  </url>
-
-  <url>
     <loc>https://freepropertysg.com/blog/</loc>
-    <lastmod>2025-11-29</lastmod>
-    <priority>0.7</priority>
-    <changefreq>weekly</changefreq>
   </url>
-
   <url>
-    <loc>https://freepropertysg.com/contact/</loc>
-    <lastmod>2025-11-29</lastmod>
-    <priority>0.6</priority>
-    <changefreq>monthly</changefreq>
+    <loc>https://freepropertysg.com/blog/absd-singapore</loc>
   </url>
-
+  <url>
+    <loc>https://freepropertysg.com/blog/high-park-residences</loc>
+  </url>
+  <url>
+    <loc>https://freepropertysg.com/blog/kitchen-renovation-package-price</loc>
+  </url>
+  <url>
+    <loc>https://freepropertysg.com/blog/parc-clematis</loc>
+  </url>
+  <url>
+    <loc>https://freepropertysg.com/blog/property-agent-commission</loc>
+  </url>
+  <url>
+    <loc>https://freepropertysg.com/blog/real-estate-investment-singapore</loc>
+  </url>
+  <url>
+    <loc>https://freepropertysg.com/blog/rental-yield-calculator-singapore</loc>
+  </url>
+  <url>
+    <loc>https://freepropertysg.com/blog/srx-x-value</loc>
+  </url>
+  <url>
+    <loc>https://freepropertysg.com/blog/test-fire-blanket-singapore</loc>
+  </url>
+  <url>
+    <loc>https://freepropertysg.com/blog/the-trilinq</loc>
+  </url>
+  <url>
+    <loc>https://freepropertysg.com/blog/toilet-renovation-package</loc>
+  </url>
 </urlset>
