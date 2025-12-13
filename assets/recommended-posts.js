@@ -7,23 +7,27 @@ document.addEventListener("DOMContentLoaded", () => {
      1. Inject CSS dynamically
   ---------------------------------------- */
   const css = `
-    .recommended-posts-section {
+    .recommended-posts-section,
+    .faq-section {
       margin-top: 2rem;
       margin-bottom: 2rem;
       padding: 0 !important;
     }
-    .recommended-posts-section h2 {
+
+    .recommended-posts-section h2,
+    .faq-section h2 {
       font-size: 1.6rem;
       margin-bottom: 1rem;
-      margin-top: 0;
       color: #212529;
       font-weight: 700;
     }
+
     .recommended-posts-container {
       display: flex;
       flex-direction: column;
       gap: 1.2rem;
     }
+
     .reco-post-link {
       text-decoration: none;
       color: #000;
@@ -31,8 +35,18 @@ document.addEventListener("DOMContentLoaded", () => {
       display: block;
       transition: color 0.2s ease;
     }
+
     .reco-post-link:hover {
       color: #ff6a00;
+    }
+
+    .faq-item {
+      margin-bottom: 1rem;
+    }
+
+    .faq-item strong {
+      display: block;
+      margin-bottom: 0.3rem;
     }
   `;
 
@@ -41,55 +55,89 @@ document.addEventListener("DOMContentLoaded", () => {
   document.head.appendChild(styleTag);
 
   /* ---------------------------------------
-     2. Build Recommended Posts HTML
+     2. Recommended Posts HTML
   ---------------------------------------- */
   const recommendedHTML = `
     <section class="recommended-posts-section">
-      <h2>Recommended Posts</h2>
+      <h2>Recommended Articles</h2>
       <div id="recommendedContainer" class="recommended-posts-container"></div>
     </section>
   `;
 
   /* ---------------------------------------
-     3. Insert inside placeholder if exists
+     3. FAQ HTML (STATIC, SEO-SAFE)
+  ---------------------------------------- */
+  const faqHTML = `
+    <section class="faq-section">
+      <h2>Frequently Asked Questions</h2>
+
+      <div class="faq-item">
+        <strong>Is FreePropertySG free to use?</strong>
+        <p>Yes. FreePropertySG is 100% free. You can browse and post property listings in Singapore without any agent fees or platform charges.</p>
+      </div>
+
+      <div class="faq-item">
+        <strong>Who can post listings on FreePropertySG?</strong>
+        <p>Anyone can post listings, including property owners, tenants, landlords, buyers, sellers, and agents who wish to share property information for free.</p>
+      </div>
+
+      <div class="faq-item">
+        <strong>What types of properties are allowed?</strong>
+        <p>FreePropertySG supports HDB, condominium, landed homes, room rentals, whole-unit rentals, and property-related listings across Singapore.</p>
+      </div>
+
+      <div class="faq-item">
+        <strong>Do I need to register an account?</strong>
+        <p>No registration is required. FreePropertySG is designed to keep property posting simple, fast, and accessible for everyone.</p>
+      </div>
+
+      <div class="faq-item">
+        <strong>How can I contact FreePropertySG?</strong>
+        <p>You can reach us via email at
+        <a href="mailto:info@freepropertysg.com">info@freepropertysg.com</a>
+        for feedback, suggestions, or partnership enquiries.</p>
+      </div>
+    </section>
+  `;
+
+  /* ---------------------------------------
+     4. Insert Recommended + FAQ
   ---------------------------------------- */
   const placeholder = document.getElementById("recommended-posts");
 
   if (placeholder) {
-    placeholder.insertAdjacentHTML("beforeend", recommendedHTML);
+    placeholder.insertAdjacentHTML("beforeend", recommendedHTML + faqHTML);
   } else {
     const footer = document.querySelector("#site-footer");
     if (footer) {
-      footer.insertAdjacentHTML("beforebegin", recommendedHTML);
+      footer.insertAdjacentHTML("beforebegin", recommendedHTML + faqHTML);
     } else {
-      document.body.insertAdjacentHTML("beforeend", recommendedHTML);
+      document.body.insertAdjacentHTML("beforeend", recommendedHTML + faqHTML);
     }
   }
 
   /* ---------------------------------------
-     4. Fetch blog index & auto-generate list
+     5. Fetch blog index & generate posts
   ---------------------------------------- */
   (async function () {
     try {
-      // FIXED — fetch from the correct domain
       const res = await fetch("https://freepropertysg.com/blog/");
       const html = await res.text();
       const doc = new DOMParser().parseFromString(html, "text/html");
 
-      // Extract blog links
-      const posts = [...doc.querySelectorAll("a[href^='/blog/']")].map(a => ({
-        title: a.textContent.trim(),
-        url: ("https://freepropertysg.com" + a.getAttribute("href")).replace(/\/$/, "")
-      }));
+      const posts = [...doc.querySelectorAll("a[href*='/blog/']")]
+        .map(a => ({
+          title: a.textContent.trim(),
+          url: a.href.replace(/\/$/, "")
+        }))
+        .filter(p => p.title && !p.url.endsWith("/blog"));
 
       const currentURL = window.location.href.replace(/\/$/, "");
 
-      // Remove current page + duplicates
       const unique = posts
         .filter(p => p.url !== currentURL)
         .filter((v, i, self) => i === self.findIndex(t => t.url === v.url));
 
-      // Select 3 random recommended posts
       const selected = unique.sort(() => Math.random() - 0.5).slice(0, 3);
 
       const box = document.getElementById("recommendedContainer");
@@ -103,7 +151,7 @@ document.addEventListener("DOMContentLoaded", () => {
       });
 
     } catch (err) {
-      console.error("Recommended Posts Error:", err);
+      console.error("Recommended Articles Error:", err);
     }
   })();
 
